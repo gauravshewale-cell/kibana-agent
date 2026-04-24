@@ -19,43 +19,42 @@ A specialized Kiro CLI agent for creating Kibana dashboards and Slack alerts fro
 
 ## Installation
 
-### 1. Clone this repository
+### Quick Setup
 
 ```bash
 git clone <repository-url>
 cd kibana-agent
+./setup.sh
 ```
 
-### 2. Install MCP Server Dependencies
+The setup script will:
+- Check Node.js version (18+ required)
+- Install MCP server dependencies
+- Prompt for configuration values
+- Create `.env` file
+- Register MCP server with Kiro CLI
 
+After setup, restart Kiro CLI if it's running.
+
+### Manual Setup
+
+<details>
+<summary>Click to expand manual installation steps</summary>
+
+1. Install MCP server dependencies:
 ```bash
 cd .kiro/mcp-servers
 npm install
 cd ../..
 ```
 
-### 3. Configure Environment Variables
-
-Create `.env` in project root:
-
+2. Copy `.env.example` to `.env` and configure:
 ```bash
-ES_URL="http://localhost:9200"
-KIBANA_URL="http://localhost:5601"
-
-# Optional: If authentication is required
-# ES_USER="your_username"
-# ES_PASSWORD="your_password"
-# KIBANA_USER="your_username"
-# KIBANA_PASSWORD="your_password"
-
-# For Slack alerts
-SLACK_INCOMING_WEBHOOK_URL="https://hooks.slack.com/services/your/webhook/url"
+cp .env.example .env
+# Edit .env with your values
 ```
 
-### 4. Register MCP Server with Kiro CLI
-
-Add to `~/.kiro/settings/mcp.json`:
-
+3. Add to `~/.kiro/settings/mcp.json`:
 ```json
 {
   "mcpServers": {
@@ -74,11 +73,9 @@ Add to `~/.kiro/settings/mcp.json`:
 }
 ```
 
-**Important:** Replace `/absolute/path/to/kibana-agent` with your actual project path. The server name must be `kibana-server` to match the agent configuration.
+4. Restart Kiro CLI
 
-### 5. Restart Kiro CLI
-
-Exit and restart your chat session to load the MCP server.
+</details>
 
 ## Usage
 
