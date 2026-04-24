@@ -23,7 +23,7 @@ A specialized Kiro CLI agent for creating Kibana dashboards and Slack alerts fro
 
 ```bash
 git clone <repository-url>
-cd kibana-agent-standalone
+cd kibana-agent
 ```
 
 ### 2. Install MCP Server Dependencies
@@ -59,13 +59,13 @@ Add to `~/.kiro/settings/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "kibana": {
+    "kibana-server": {
       "command": "node",
-      "args": ["/absolute/path/to/kibana-agent-standalone/.kiro/mcp-servers/kibana-server.js"],
+      "args": ["/absolute/path/to/kibana-agent/.kiro/mcp-servers/kibana-server.js"],
       "env": {
         "ES_URL": "http://localhost:9200",
         "KIBANA_URL": "http://localhost:5601",
-        "ROOT_DIR": "/absolute/path/to/kibana-agent-standalone"
+        "ROOT_DIR": "/absolute/path/to/kibana-agent"
       },
       "disabled": false,
       "autoApprove": []
@@ -74,7 +74,7 @@ Add to `~/.kiro/settings/mcp.json`:
 }
 ```
 
-**Important:** Replace `/absolute/path/to/kibana-agent-standalone` with your actual project path.
+**Important:** Replace `/absolute/path/to/kibana-agent` with your actual project path. The server name must be `kibana-server` to match the agent configuration.
 
 ### 5. Restart Kiro CLI
 
